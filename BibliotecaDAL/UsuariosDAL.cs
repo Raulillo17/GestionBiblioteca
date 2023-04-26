@@ -12,6 +12,7 @@ namespace BibliotecaDAL
         public static Dictionary<string, string> ObtenerCliente(string usuario)
         {
             Dictionary<string, string> diccRetorno = new Dictionary<string, string>();
+            Dictionary<string, string> diccRetornonulo = new Dictionary<string, string>();
 
             using (SqlConnection con = new SqlConnection(UtilDAL.CadenaConexion))
             {
@@ -29,8 +30,9 @@ namespace BibliotecaDAL
                 if (reader.Read()) //Podría usar un while, pero asumimos que sólo habrá uno con ese nombre de usuario
                 {
                     diccRetorno.Add("Password", reader["Password"].ToString());
-                    if (reader["FechaBaja"] != DBNull.Value)
+                    if (reader["FechaBaja"] != DBNull.Value) { 
                         diccRetorno.Add("FechaBaja", reader["FechaBaja"].ToString());
+                    }                   
                 }
                 else
                     diccRetorno.Add("Existe", Boolean.FalseString);

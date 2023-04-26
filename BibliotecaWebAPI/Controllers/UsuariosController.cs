@@ -14,7 +14,7 @@ namespace BibliotecaWebAPI.Controllers
 
         [HttpPost]
         [Route("api/UsuariosController/ValidarLoginUsuario")]        
-        public HttpResponseMessage ValidarLoginUsuario([FromBody] Dictionary<string, object> infoAcceso)
+        public HttpResponseMessage ValidarLoginUsuario([FromBody] Dictionary<string, string> infoAcceso)
         {
             
             HttpResponseMessage response = new HttpResponseMessage();
@@ -57,16 +57,16 @@ namespace BibliotecaWebAPI.Controllers
 
 
 
-                //Dictionary<string, object> infoAux = BibliotecaBL.UsuarioBL.ValidarLoginUsuario(infoAcceso);
+                Dictionary<string, string> infoAux = BibliotecaBL.UsuariosBL.ValidarLoginUsuario(infoAcceso);
 
-               
+               // Dictionary<string, object> infoAux = new Dictionary<string, object>();
+               // infoAux.Add("TieneAcceso", true);
+               // infoAux.Add("FechaUltimaConexion", DateTime.Now);
 
-                Dictionary<string, object> infoAux = new Dictionary<string, object>();
-                infoAux.Add("TieneAcceso", true);
-                infoAux.Add("FechaUltimaConexion", DateTime.Now);
+            
 
 
-                
+
                 #endregion Validación
 
                 //Con lo que se nos devuelva desde la DAL -> BL, enviamos la respuesta.

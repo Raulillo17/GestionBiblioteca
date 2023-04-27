@@ -46,6 +46,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BibliotecaDAL\BibliotecaDAL.csproj">
+      <Project>{925f7603-de6b-4c71-bb65-48fb6106c64c}</Project>
+      <Name>BibliotecaDAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BibliotecaModelos\BibliotecaModelos.csproj">
       <Project>{f05c43da-36e8-4a2c-bb7d-a8ae6d776fb9}</Project>
       <Name>BibliotecaModelos</Name>

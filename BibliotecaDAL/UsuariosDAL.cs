@@ -12,7 +12,7 @@ namespace BibliotecaDAL
         public static Dictionary<string, string> ObtenerCliente(string usuario)
         {
             Dictionary<string, string> diccRetorno = new Dictionary<string, string>();
-            Dictionary<string, string> diccRetornonulo = new Dictionary<string, string>();
+            
 
             using (SqlConnection con = new SqlConnection(UtilDAL.CadenaConexion))
             {
@@ -42,5 +42,7 @@ namespace BibliotecaDAL
             }
             return diccRetorno;
         }
+
+       
     }
 }

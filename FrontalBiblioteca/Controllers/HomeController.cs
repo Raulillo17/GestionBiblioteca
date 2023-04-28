@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Windows.Forms;
+using static System.Collections.Specialized.BitVector32;
 
 namespace FrontalBiblioteca.Controllers
 {
@@ -24,35 +26,7 @@ namespace FrontalBiblioteca.Controllers
 
             // using ( SqlConnection connection = new SqlConnection(connectionString))
             {
-                // SqlCommand command = new SqlCommand(consulta, connection);
-                //command.Parameters.AddWithValue("@user", txtNombre);
-                //command.Parameters.AddWithValue("@password", txtPassword);
-
-
-                //connection.Open();
-                // SqlDataReader reader = command.ExecuteReader();
-
-                // if (reader.HasRows)
-                // {
-                //     usuarioExiste = true;
-                //}
-
-                // reader.Close();
-                //}
-
-
-                // if (usuarioExiste)
-                // {
-                //     ViewBag.Mensaje = "Bienvenido" +txtNombre;
-                //     return View("Gestion");
-                //  }
-                // else
-
-                // {              
-                //    return View("Validacion");
-                // }
-
-                //// Recibimos el nombre de usuario y la contraseña del formulario
+               
                 
                
                     // Si los valores coinciden, devolvemos "true"
@@ -63,31 +37,25 @@ namespace FrontalBiblioteca.Controllers
                     infoLogin.Add("Password", password);
 
                     var infoAcceso = ConectorAPI.ValidarLoginUsuario(infoLogin, out string msgErr);
-
+                    
+            
+                    if(infoAcceso.ContainsKey("Existe")) {
+                    MessageBox.Show("El usuario introducido no existe en nuestra base de datos, intentelo de nuevo", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return View("Validacion");
+                    }
+                    else
+                    {
+                    MessageBox.Show("El usuario introducido es correcto, bienvenid@", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return View("Gestion");
+                    }
+
+                   
                 
                     // Si los valores no coinciden, devolvemos "false"                 
                     //Response.Cookies.Add(new HttpCookie("Error", "Usuario o contraseña incorrectos"));
 
                     //return View("Validacion");
-                
-
-
-
-
-                //// Llamamos al método para validar el usuario y la contraseña
-                //bool esValido = ValidarUsuario(nombreUsuario, contrasena);
-
-                //// Si el usuario y la contraseña son válidos, redirigimos al usuario a otra página
-                //if (esValido)
-                //{
-                //    Response.Redirect("Gestion.cshtml");
-                //}
-                //else
-                //{
-                //    // Si el usuario y la contraseña no son válidos, mostramos un mensaje de error
-                //    Response.Cookies.Add(new HttpCookie("Error", "Usuario o contraseña incorrectos"));
-                //}
+   
 
 
             }

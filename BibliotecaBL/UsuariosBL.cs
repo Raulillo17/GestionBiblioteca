@@ -12,15 +12,13 @@ namespace BibliotecaBL
     {
         public static Dictionary<string, string> ValidarLoginUsuario(Dictionary<string, string> infoAcceso)
         {
-            String nombreUsuario = "";
+                String nombreUsuario = infoAcceso["Usuario"];
                 Dictionary<string, string> infoLogin = BibliotecaDAL.UsuariosDAL.ObtenerCliente(nombreUsuario); ;
                 //llamamos a la dal y obtener el resultado
-                infoLogin = new Dictionary<string, string>(); //esto esta para que compile y no de error pero no deberia ser asi
+                //infoLogin = new Dictionary<string, string>(); //esto esta para que compile y no de error pero no deberia ser asi
 
                 return infoLogin;
-          
-
-            
+    
         }
 
         //public static Dictionary<string, string> ObtenerCliente(Dictionary<string, string> diccRetorno)

@@ -12,7 +12,7 @@ function validarFormulario(e) {
     // Validar que el contenido del nombre está todo en minúsculas y que como mínimo son 8 caracteres
     var usuario = document.getElementById("user").value;
     var password = document.getElementById("password").value;
-
+    var regex = /^(?=.[a-zA-Z])(?=.\d).{6,}$/;
     var msgerror = "";
 
     if (usuario === password) {
@@ -30,14 +30,11 @@ function validarFormulario(e) {
 
     } 
    
-    // Validar que la password NO es igual al nombre y que tiene al menos 6 caracteres, con letras y dígitos
+    // Validar que la password tiene al menos 6 caracteres, con letras y dígitos
+    else if (regex.test(password)) {
 
-    //else if (/^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z!@#$%^&*]{6,}$/.test(password)) {
-    //    return true;
-    //} else {
-    //    msgerror = "La contraseña debe tener al menos 6 caracteres, incluyendo letras y dígitos, y no debe ser igual al nombre de usuario.";
-        
-    //}
+        msgerror = "La Contraseña debe tener 6 carcateres con letras y digitos";
+    }
 
     if (msgerror !== "") {
         e.preventDefault();

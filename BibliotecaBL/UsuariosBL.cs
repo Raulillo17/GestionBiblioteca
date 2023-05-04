@@ -17,6 +17,14 @@ namespace BibliotecaBL
                 //llamamos a la dal y obtener el resultado
                 //infoLogin = new Dictionary<string, string>(); //esto esta para que compile y no de error pero no deberia ser asi
 
+                if (infoLogin.ContainsKey("Existe")){
+                infoLogin.Add("Tiene Acceso", "false");
+            }
+            else
+            {
+                infoLogin.Add("Tiene Acceso", "true");
+            }
+            
                 return infoLogin;
     
         }

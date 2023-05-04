@@ -40,12 +40,10 @@ namespace FrontalBiblioteca.Controllers
                     
             
                     if(infoAcceso.ContainsKey("Existe")) {
-                    MessageBox.Show("El usuario introducido no existe en nuestra base de datos, intentelo de nuevo", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return View("Validacion");
                     }
                     else
                     {
-                    MessageBox.Show("El usuario introducido es correcto, bienvenid@", "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     return View("Gestion");
                     }
 

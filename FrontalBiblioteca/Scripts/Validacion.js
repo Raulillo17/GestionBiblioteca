@@ -29,12 +29,26 @@ function validarFormulario(e) {
         
 
     } 
-   
+  
     // Validar que la password tiene al menos 6 caracteres, con letras y dígitos
     else if (regex.test(password)) {
 
         msgerror = "La Contraseña debe tener 6 carcateres con letras y digitos";
     }
+
+    ///// comprobar si la cookie existe
+    //else if (document.cookie.indexOf("login_error=true") !== -1) {
+    //    // mostrar mensaje de error si la cookie existe
+    //    msgerror = "Hubo un error en el inicio de sesión";
+    //    // eliminar la cookie
+    //    //document.cookie = "login_error=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+    //} else {
+    //    // crear y enviar la cookie si el usuario existe en la base de datos
+    //    var usuarioExiste = true; // aquí se comprueba si el usuario existe en la base de datos
+    //    if (usuarioExiste) {
+    //        document.cookie = "usuario_login=true; expires=Fri, 31 Dec 9999 23:59:59 UTC; path=/;";
+    //    }
+    //}
 
     if (msgerror !== "") {
         e.preventDefault();
@@ -50,17 +64,6 @@ function validarFormulario(e) {
     
 } 
 
-function checkCookie() {
-    //let idcliente = getCookie("user");
-    //if (idcliente != "") {
-    //    alert("Welcome again " + user);
-    //} else {
-    //    idcliente = prompt("Please enter your name:", "");
-    //    if (idcliente != "" && idcliente != null) {
-    //        setCookie("user", user, 365);
-    //    }
-    //}
-}
 
 
 

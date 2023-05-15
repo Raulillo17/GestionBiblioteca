@@ -1,8 +1,30 @@
-﻿//const expresiones{
-//    usuario: /^[a-z-0-9\_\-]{8-20}$/
-//    contrasena: /^(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z!@#$%^&*]{6,}$/
-//    }
+﻿//alert("Hola mundo");
+function checkLogin() {
+    //creamos una fucnion para comprobar si existe alguna cookie
+    if (document.cookie !== undefined && document.cookie !== null && document.cookie !== "") {
+    //separamos el docuemnto que puede contener muchas cookies por ; asi separamos todas las cookies y las almacenamos en la variable ccs que es un array
+        var ccs = document.cookie.split("; ");
+    //recorremos el arrray
+        for (var i = 0; i < ccs.length; i++) {
+        //almacenamos la cookie en la variable
+            var c = ccs[i];
+        //si encuentra en la variable c la cookie que empieza por errorlogin= se hara lo que `pone dentro de la condicion`
+        if (c.indexOf("errorlogin=") === 0) {
+            //var mensaje = c.substring(12);
+            //cogemos el valor de la cookie y la almacenamos en la variable
+            var mensaje = c.split("=")[1];
+            //asignamos a la label el mensaje qe contiene el valor de la cookie
+            document.getElementById("lblError").textContent = mensaje;
+            break;
+        }
+        
+        }
+    //borramos la cookie para que no se mantenaga hasta que cerremos el navegador
+    document.cookie = "errorlogin=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
 
+}
+
+}
 
 
 

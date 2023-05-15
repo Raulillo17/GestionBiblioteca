@@ -16,6 +16,7 @@ namespace FrontalBiblioteca.Controllers
 
         public ActionResult Index()
         {
+        
             return View("Validacion");
         }
         [JSInvokable]
@@ -40,8 +41,9 @@ namespace FrontalBiblioteca.Controllers
                     var infoAcceso = ConectorAPI.ValidarLoginUsuario(infoLogin, out string msgErr);
                     
             
-                    if(infoAcceso.ContainsKey("Existe")) {
-                        return View("Validacion");
+                    if(infoAcceso.ContainsValue("false")) {
+                    Response.Cookies.Add(new HttpCookie("errorlogin", "Usuario o contraseña incorrectos"));
+                    return View("Validacion");
                         
                     }
                     else

@@ -10,6 +10,13 @@ namespace BibliotecaBL
 {
     public class UsuariosBL
     {
+        public static Dictionary<String, String> ObtenerLibros(Dictionary<String, String> infoAccesoLibros)
+        {
+            Dictionary<string, string> infoLoginLibros = BibliotecaDAL.UsuariosDAL.ObtenerLibros(); ;
+
+            return infoLoginLibros;
+        }
+
         public static Dictionary<string, string> ValidarLoginUsuario(Dictionary<string, string> infoAcceso)
         {
                 String nombreUsuario = infoAcceso["Usuario"];

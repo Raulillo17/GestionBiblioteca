@@ -1,8 +1,10 @@
 ﻿using BibliotecaModelos;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Security.Policy;
 using System.Web.Configuration;
 
 namespace FrontalBiblioteca.Utilidades
@@ -263,6 +265,29 @@ namespace FrontalBiblioteca.Utilidades
             return usuarios;
         }
 
+        public static Dictionary<String, String> ObtenerLibros(Dictionary<String, String> requestform, out string msgErr)
+        {
+
+            msgErr = null;
+            string uri = "api/LibrosContoller/ObtenerLibros";
+            HttpResponseMessage response = RespuestaPOST(uri, requestform);
+       
+                if (requestform == null)
+                {
+                    msgErr = "INFOACCESO vacío. Error en llamada a " + uri + " - Motivo: " + response.ReasonPhrase;
+                }
+            
+                else
+                {
+                msgErr = "Error en llamada a " + uri + " - Motivo: " + response.ReasonPhrase;
+                }
+            return requestform;
+
+
+        }
+
+
         #endregion
     }
+   
 }

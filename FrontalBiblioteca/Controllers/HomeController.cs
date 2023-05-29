@@ -1,4 +1,5 @@
-﻿using FrontalBiblioteca.Utilidades;
+﻿using BibliotecaModelos;
+using FrontalBiblioteca.Utilidades;
 using Microsoft.JSInterop;
 using System;
 using System.Collections.Generic;
@@ -35,6 +36,8 @@ namespace FrontalBiblioteca.Controllers
                     ViewBag.Mensaje = "Bienvenido" + user;
 
                     Dictionary<string, string> infoLogin = new Dictionary<string, string>();
+                    //creamos el diccionario idcliente para almacenar el iddelcliente
+                    Dictionary<String, String> idcliente = new Dictionary<String, String>();
                     infoLogin.Add("Usuario", user);
                     infoLogin.Add("Password", password);
 
@@ -48,6 +51,17 @@ namespace FrontalBiblioteca.Controllers
                     }
                     else
                     {
+                    //diccionario para almacenar todo lo enviado a traves del navegador
+                    Dictionary<String, String> requestform = new Dictionary<String, String>();
+                    foreach (var key in Request.Form.Keys)
+                    {
+                        string keyString = (string)key;
+                        string value = Request.Form[keyString];
+                        requestform.Add(keyString, value);
+                    }
+
+                    idcliente = ConectorAPI.ObtenerLibros(requestform, out string msgErrLibros);
+
                     return View("Gestion");
                    
                 }

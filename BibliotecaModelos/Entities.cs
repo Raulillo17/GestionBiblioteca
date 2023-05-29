@@ -21,12 +21,14 @@ namespace BibliotecaModelos
 
     public class Libro
     {
-        public int id { get; set; }
-        public string titulo { get; set; }
-        public string editorial { get; set; }
-        public string autor { get; set; }
-        public bool reservado { get; set; }
-        public bool comprado { get; set; }
+        public int idLibro { get; set; }
+        public string ISBN { get; set; }
+        public string Titulo { get; set; }
+        public string Sinopsis { get; set; }
+        public bool Autor { get; set; }
+        public bool Editorial { get; set; }
+        public string Coleccion { get; set; }
+        public string FechaPrimeraEdicion { get; set; }
     }
 
     public class Respuesta

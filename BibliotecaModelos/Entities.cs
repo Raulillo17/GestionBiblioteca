@@ -25,10 +25,10 @@ namespace BibliotecaModelos
         public string ISBN { get; set; }
         public string Titulo { get; set; }
         public string Sinopsis { get; set; }
-        public bool Autor { get; set; }
-        public bool Editorial { get; set; }
+        public string Autor { get; set; }
+        public string Editorial { get; set; }
         public string Coleccion { get; set; }
-        public string FechaPrimeraEdicion { get; set; }
+        public DateTime FechaPrimeraEdicion { get; set; }
     }
 
     public class Respuesta

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BibliotecaModelos;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -10,11 +11,11 @@ namespace BibliotecaBL
 {
     public class UsuariosBL
     {
-        public static Dictionary<String, String> ObtenerLibros(Dictionary<String, String> infoAccesoLibros)
+        public static List<Libro> ObtenerLibros(Dictionary<string, string> infoAccesoLibros)
         {
-            Dictionary<string, string> infoLoginLibros = BibliotecaDAL.UsuariosDAL.ObtenerLibros(); ;
+            List<Libro> listalibros = BibliotecaDAL.UsuariosDAL.ObtenerLibros(); ;
 
-            return infoLoginLibros;
+            return listalibros;
         }
 
         public static Dictionary<string, string> ValidarLoginUsuario(Dictionary<string, string> infoAcceso)

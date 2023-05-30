@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using BibliotecaModelos;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,11 @@ using System.Web.Http;
 
 namespace BibliotecaWebAPI.Controllers
 {
-    public class LibrosController
+    public class LibrosController : ApiController
     {
         [HttpPost]
-        [Route("api/LibrosContoller/ObtenerLibros")]
-        public HttpResponseMessage ObtenerLibros([FromBody] Dictionary<String, String> infoAccesoLibros)
+        [Route("api/LibrosController/ObtenerLibros")]
+        public HttpResponseMessage ObtenerLibros([FromBody] Dictionary<string, string> infoAccesoLibros)
         {
             HttpResponseMessage response = new HttpResponseMessage();
 
@@ -21,10 +22,10 @@ namespace BibliotecaWebAPI.Controllers
             try
             {
                 //llamamos al metodos ObtenerLibros de la capa BL
-                Dictionary<String, String> infoAuxLibros = BibliotecaBL.UsuariosBL.ObtenerLibros(infoAccesoLibros);
+                List<Libro> listalibros = BibliotecaBL.UsuariosBL.ObtenerLibros(infoAccesoLibros);
 
                 //Devolvemos el diccionario con toda la información adicional, serializada.
-                response.Content = new StringContent(JsonConvert.SerializeObject(infoAuxLibros), System.Text.Encoding.UTF8, "application/json");
+                response.Content = new StringContent(JsonConvert.SerializeObject(listalibros), System.Text.Encoding.UTF8, "application/json");
                 return response;
             }
 
@@ -34,9 +35,6 @@ namespace BibliotecaWebAPI.Controllers
                 response.ReasonPhrase = ex.Message;
                 return response;
             }
-
-
-
 
         }
         }

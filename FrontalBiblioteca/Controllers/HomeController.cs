@@ -2,6 +2,7 @@
 using FrontalBiblioteca.Utilidades;
 using Microsoft.JSInterop;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -69,6 +70,8 @@ namespace FrontalBiblioteca.Controllers
                     }
 
                     listalibros = ConectorAPI.ObtenerLibros(requestform, out string msgErrLibros);
+
+                    ViewData["Libros"] = listalibros;
 
                     //creamos una variable para recoger el valor que contiene la KEY idCliente
                     string idCliente = infoAcceso["idCliente"].ToString();

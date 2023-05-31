@@ -19,74 +19,78 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h2>ListadoLibros</h2>
-    <div class="justify-content-center">
-        <table id="tablalibros">
-            <thead>
-                <tr>
-                    <th>Acciones</th>
-                    <th>Título</th>
-                    <th>Autor</th>
-                    <th>Editorial</th>
-                    <th>Coleccion</th>
-                    <th>Fecha Primera Edicion</th>
-                    <th>Estado</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if (libros != null && libros.Count > 0)
-                {
-                    foreach (var libro in libros)
-                    {
+    <h2 class="text-center">ListadoLibros</h2>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-8">
+                <table class="table table-bordered" id="tablaLibros">
+                    <thead>
                         <tr>
-                            <td><button>Detalle</button></td>
-                            <td>@libro.Titulo</td>
-                            @if (libro.Autor == null)
-                            {
-                                <td>-</td>
-                            }
-                            else
-                            {
-                                <td>@libro.Autor</td>
-                            }
-                            @if (libro.Editorial == null)
-                            {
-                                <td>-</td>
-                            }
-                            else
-                            {
-                                <td>@libro.Editorial</td>
-                            }
-                            @if (libro.Coleccion == null)
-                            {
-                                <td>-</td>
-                            }
-                            else
-                            {
-                                <td>@libro.Coleccion</td>
-                            }
-                            @if (libro.FechaPrimeraEdicion == null)
-                            {
-                                <td>-</td>
-                            }
-                            else
-                            {
-                                <td>libro.FechaPrimeraEdicion</td>
-                            }
-
-
-
+                            <th>Acciones</th>
+                            <th>Título</th>
+                            <th>Autor</th>
+                            <th>Editorial</th>
+                            <th>Coleccion</th>
+                            <th>Fecha Primera Edicion</th>
+                            <th>Estado</th>
                         </tr>
-                    }
-                }
-                else
-                {
-                    <tr>
-                        <td colspan="4">No se encontraron libros.</td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+                    </thead>
+                    <tbody>
+                        @if (libros != null && libros.Count > 0)
+                        {
+                            foreach (var libro in libros)
+                            {
+                                <tr>
+                                    <td><button>Detalle</button></td>
+                                    <td>@libro.Titulo</td>
+                                    @if (libro.Autor == null)
+                                    {
+                                        <td>-</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@libro.Autor</td>
+                                    }
+                                    @if (libro.Editorial == null)
+                                    {
+                                        <td>-</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@libro.Editorial</td>
+                                    }
+                                    @if (libro.Coleccion == null)
+                                    {
+                                        <td>-</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@libro.Coleccion</td>
+                                    }
+                                    @if (libro.FechaPrimeraEdicion == null)
+                                    {
+                                        <td>-</td>
+                                    }
+                                    else
+                                    {
+                                        <td>@libro.FechaPrimeraEdicion</td>
+                                    }
+
+
+
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="4">No se encontraron libros.</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
     </div>
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

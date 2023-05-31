@@ -34,12 +34,18 @@ namespace FrontalBiblioteca.Controllers
        
                     // Si los valores coinciden, devolvemos "true"
                     ViewBag.Mensaje = "Bienvenido" + user;
+
                     //Diccionario para meter la informacion que nos viene al logearnos con el submit
                     Dictionary<string, string> infoLogin = new Dictionary<string, string>();
+
                     //creamos el diccionario idcliente para almacenar el iddelcliente
                     Dictionary<string, string> idcliente = new Dictionary<string, string>();
                     infoLogin.Add("Usuario", user);
                     infoLogin.Add("Password", password);
+
+                    //Hacemos una instacia de una lista
+                    List<Libro> listalibros = new List<Libro>(); 
+                    
 
                     var infoAcceso = ConectorAPI.ValidarLoginUsuario(infoLogin, out string msgErr);
                     
@@ -62,14 +68,18 @@ namespace FrontalBiblioteca.Controllers
                         requestform.Add(keyString, value);
                     }
 
-                    var requestformLibros = ConectorAPI.ObtenerLibros(requestform, out string msgErrLibros);
+                    listalibros = ConectorAPI.ObtenerLibros(requestform, out string msgErrLibros);
 
                     //creamos una variable para recoger el valor que contiene la KEY idCliente
                     string idCliente = infoAcceso["idCliente"].ToString();
+
+                    //añadimos al diccionario el id del cliente
+                    idcliente.Add("idCliente", idCliente);
+
                     //Creamos una nueva cookie y añadimos la Key idCliente con el valor que contiene la variable idCliente
                     Response.Cookies.Add(new HttpCookie("idCliente", idCliente));
 
-                    return View("Gestion");
+                    return View("ListadoLibros");
                     
                    
                 }

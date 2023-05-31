@@ -11,7 +11,7 @@ namespace BibliotecaBL
 {
     public class UsuariosBL
     {
-        public static List<Libro> ObtenerLibros(Dictionary<string, string> infoAccesoLibros)
+        public static List<Libro> ObtenerLibros(List<Libro> listalibrosLibroController)
         {
             List<Libro> listalibros = BibliotecaDAL.UsuariosDAL.ObtenerLibros(); ;
 

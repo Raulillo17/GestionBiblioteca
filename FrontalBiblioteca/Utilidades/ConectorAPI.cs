@@ -265,17 +265,17 @@ namespace FrontalBiblioteca.Utilidades
             return usuarios;
         }
 
-        public static Dictionary<string, object> ObtenerLibros(Dictionary<string, string> requestform, out string msgErr)
+        public static List<Libro> ObtenerLibros(Dictionary<string, string> requestform, out string msgErr)
         {
-            Dictionary<string, object> infoAccesoLibros = new Dictionary<string, object>();
+            List<Libro> listalibros = new List<Libro> ();
             msgErr = null;
             string uri = "api/LibrosController/ObtenerLibros";
             HttpResponseMessage response = RespuestaPOST(uri, requestform);
             if (response.IsSuccessStatusCode)
             {
-                infoAccesoLibros.Add("Libro", true);
-                infoAccesoLibros = response.Content.ReadAsAsync<Dictionary<string, object>>().Result;
-                if (infoAccesoLibros == null)
+
+                listalibros = response.Content.ReadAsAsync<List<Libro>>().Result;
+                if (listalibros == null)
                 {
                     msgErr = "Diccionario vacío. Error en llamada a " + uri + " - Motivo: " + response.ReasonPhrase;
                 }
@@ -286,7 +286,7 @@ namespace FrontalBiblioteca.Utilidades
             {
                 msgErr = "Error en llamada a " + uri + " - Motivo: " + response.ReasonPhrase;
             }
-            return infoAccesoLibros;
+            return listalibros;
 
 
         }

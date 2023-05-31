@@ -14,7 +14,7 @@ namespace BibliotecaWebAPI.Controllers
     {
         [HttpPost]
         [Route("api/LibrosController/ObtenerLibros")]
-        public HttpResponseMessage ObtenerLibros([FromBody] Dictionary<string, string> infoAccesoLibros)
+        public HttpResponseMessage ObtenerLibros([FromBody]List<Libro> listalibrosApi)
         {
             HttpResponseMessage response = new HttpResponseMessage();
 
@@ -22,7 +22,7 @@ namespace BibliotecaWebAPI.Controllers
             try
             {
                 //llamamos al metodos ObtenerLibros de la capa BL
-                List<Libro> listalibros = BibliotecaBL.UsuariosBL.ObtenerLibros(infoAccesoLibros);
+                List<Libro> listalibros = BibliotecaBL.UsuariosBL.ObtenerLibros(listalibrosApi);
 
                 //Devolvemos el diccionario con toda la información adicional, serializada.
                 response.Content = new StringContent(JsonConvert.SerializeObject(listalibros), System.Text.Encoding.UTF8, "application/json");

@@ -319,6 +319,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Gestion.cshtml" />
     <Content Include="Views\Home\Validacion.cshtml" />
+    <Content Include="Views\Home\ListadoLibros.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

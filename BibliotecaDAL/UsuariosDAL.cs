@@ -35,6 +35,7 @@ namespace BibliotecaDAL
                         diccRetorno.Add("FechaBaja", reader["FechaBaja"].ToString());
                     }
                     diccRetorno.Add("idCliente", reader["id"].ToString());
+                    diccRetorno.Add("NombreUsuario", reader["NombreUsuario"].ToString());
                 }
                 else
                     diccRetorno.Add("Existe", Boolean.FalseString);
@@ -63,35 +64,35 @@ namespace BibliotecaDAL
                 con.Open();
                 SqlDataReader reader = command.ExecuteReader();
 
-                while (reader.Read()) //Podría usar un while, pero asumimos que sólo habrá uno con ese nombre de usuario
+                while (reader.Read()) 
                 {
 
                     // Crear un objeto para representar el registro
                     Libro libro = new Libro();
                     //Metemos la informacion al diccionario que queramos devolver
-                    libro.idLibro = reader.GetInt32(0);
-                    libro.ISBN = reader.GetString(1);
-                    libro.Titulo = reader.GetString(2);
+                    libro.idLibro = reader.GetInt32(reader.GetOrdinal("idLibro"));
+                    libro.ISBN = reader.GetString(reader.GetOrdinal("ISBN"));
+                    libro.Titulo = reader.GetString(reader.GetOrdinal("Titulo"));
                     if (reader["Sinopsis"] != DBNull.Value)
                     {
-                        libro.Sinopsis = reader.GetString(3);
+                        libro.Sinopsis = reader.GetString(reader.GetOrdinal("Sinopsis"));
 
                     }
                     if (reader["Autor"] != DBNull.Value)
                     {
-                        libro.Autor = reader.GetString(4);
+                        libro.Autor = reader.GetString(reader.GetOrdinal("Autor"));
                     }
                     if (reader["Editorial"] != DBNull.Value)
                     {
-                        libro.Editorial = reader.GetString(5);
+                        libro.Editorial = reader.GetString(reader.GetOrdinal("Editorial"));
                     }
                     if (reader["Coleccion"] != DBNull.Value)
                     {
-                        libro.Coleccion = reader.GetString(6);
+                        libro.Coleccion = reader.GetString(reader.GetOrdinal("Coleccion"));
                     }
                     if (reader["FechaPrimeraEdicion"] != DBNull.Value)
                     {
-                        libro.FechaPrimeraEdicion = reader.GetDateTime(7);
+                        libro.FechaPrimeraEdicion = reader.GetDateTime(reader.GetOrdinal("FechaPrimeraEdicion"));
                     }
 
 

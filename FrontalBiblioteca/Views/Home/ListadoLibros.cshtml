@@ -41,39 +41,39 @@
                             foreach (var libro in libros)
                             {
                                 <tr>
-                                    <td><button>Detalle</button></td>
-                                    <td>@libro.Titulo</td>
+                                    <td class="text-center"><button>Detalle</button></td>
+                                    <td class="text-center">@libro.Titulo</td>
                                     @if (libro.Autor == null)
                                     {
-                                        <td>-</td>
+                                        <td class="text-center">-</td>
                                     }
                                     else
                                     {
-                                        <td>@libro.Autor</td>
+                                        <td class="text-center">@libro.Autor</td>
                                     }
                                     @if (libro.Editorial == null)
                                     {
-                                        <td>-</td>
+                                        <td class="text-center">-</td>
                                     }
                                     else
                                     {
-                                        <td>@libro.Editorial</td>
+                                        <td class="text-center">@libro.Editorial</td>
                                     }
                                     @if (libro.Coleccion == null)
                                     {
-                                        <td>-</td>
+                                        <td class="text-center">-</td>
                                     }
                                     else
                                     {
-                                        <td>@libro.Coleccion</td>
+                                        <td class="text-center">@libro.Coleccion</td>
                                     }
                                     @if (libro.FechaPrimeraEdicion == null)
                                     {
-                                        <td>-</td>
+                                        <td class="text-center">-</td>
                                     }
                                     else
                                     {
-                                        <td>@libro.FechaPrimeraEdicion</td>
+                                        <td class="text-center">@libro.FechaPrimeraEdicion</td>
                                     }
 
 

@@ -28,7 +28,7 @@ namespace BibliotecaModelos
         public string Autor { get; set; }
         public string Editorial { get; set; }
         public string Coleccion { get; set; }
-        public DateTime FechaPrimeraEdicion { get; set; }
+        public DateTime? FechaPrimeraEdicion { get; set; }
     }
 
     public class Respuesta

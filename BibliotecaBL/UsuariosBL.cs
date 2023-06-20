@@ -10,17 +10,12 @@ using System.Threading.Tasks;
 namespace BibliotecaBL
 {
     public class UsuariosBL
-    {
-        public static List<Libro> ObtenerLibros(List<Libro> listalibrosLibroController)
-        {
-            List<Libro> listalibros = BibliotecaDAL.UsuariosDAL.ObtenerLibros(); ;
-
-            return listalibros;
-        }
+    {      
 
         public static Dictionary<string, string> ValidarLoginUsuario(Dictionary<string, string> infoAcceso)
         {
                 String nombreUsuario = infoAcceso["Usuario"];
+                
                 Dictionary<string, string> infoLogin = BibliotecaDAL.UsuariosDAL.ObtenerCliente(nombreUsuario); ;
                 //llamamos a la dal y obtener el resultado
                 //infoLogin = new Dictionary<string, string>(); //esto esta para que compile y no de error pero no deberia ser asi

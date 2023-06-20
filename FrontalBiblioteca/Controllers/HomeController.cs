@@ -31,8 +31,7 @@ namespace FrontalBiblioteca.Controllers
 
             // using ( SqlConnection connection = new SqlConnection(connectionString))
             {
-                
-       
+                      
                     // Si los valores coinciden, devolvemos "true"
                     ViewBag.Mensaje = "Bienvenido" + user;
 
@@ -40,44 +39,84 @@ namespace FrontalBiblioteca.Controllers
                     Dictionary<string, string> infoLogin = new Dictionary<string, string>();
 
                     //creamos el diccionario idcliente para almacenar el iddelcliente
-                    Dictionary<string, string> idcliente = new Dictionary<string, string>();
+                    Dictionary<string, string> filtroLibros = new Dictionary<string, string>();
+
+
+                    //Dictionary<string, object> infoAccesoLibros = new Dictionary<string, object>();
                     infoLogin.Add("Usuario", user);
                     infoLogin.Add("Password", password);
 
                     //Hacemos una instacia de una lista
                     List<Libro> listalibros = new List<Libro>(); 
                     
-
+                    //llamamos al metodo de la api pasandole el usuario y la contraseña con la que se ha registrado
                     var infoAcceso = ConectorAPI.ValidarLoginUsuario(infoLogin, out string msgErr);
-                    
-           
-                    if(infoAcceso.ContainsValue("false")) {
 
+                    object valor;
+                    if (infoAcceso.TryGetValue("Tiene acceso", out valor) && valor.ToString() == "false")
+                    {
                     Response.Cookies.Add(new HttpCookie("errorlogin", "Usuario o contraseña incorrectos"));
                     return View("Validacion");
                     
-
                     }
                     else
                     {
-                    //diccionario para almacenar todo lo enviado a traves del navegador
-                    Dictionary<string, string> requestform = new Dictionary<string, string>();
-                    foreach (var key in Request.Form.Keys)
-                    {
-                        string keyString = (string)key;
-                        string value = Request.Form[keyString];
-                        requestform.Add(keyString, value);
-                    }
 
-                    listalibros = ConectorAPI.ObtenerLibros(requestform, out string msgErrLibros);
-
-                    ViewData["Libros"] = listalibros;
-
-                    //creamos una variable para recoger el valor que contiene la KEY idCliente
+                    //creamos una variable para recoger el valor que contiene la KEY idCliente y NombreUsuario                   
                     string idCliente = infoAcceso["idCliente"].ToString();
+                    string NombreUsuario = infoAcceso["NombreUsuario"].ToString();
+
 
                     //añadimos al diccionario el id del cliente
-                    idcliente.Add("idCliente", idCliente);
+                    filtroLibros.Add("idCliente", idCliente);
+                    filtroLibros.Add("NombreUsuario", NombreUsuario);
+
+
+                    //llamamos al metodo de la api con los datos que queremos para filtrar en un diccionario
+                    listalibros = ConectorAPI.ObtenerLibros(filtroLibros, out string msgErrLibros);
+
+                    //Inicializamos las listas para coger todos los datos
+                    List<string> titulosLibros = new List<string>();
+                    List<string> autoresLibros = new List<string>();
+                    List<string> editorialesLibros = new List<string>();
+                    List<string> coleccionesLibros = new List<string>();
+
+                    ////hacemos un bucle para recoger los titulos de todos los libros
+                    //foreach (var libro in listalibros)
+                    //{
+                    //    titulosLibros.Add(libro.Titulo);
+
+                    //}
+
+                    ////hacemos un bucle para recoger los AUTORES de todos los libros
+                    //foreach (var libro in listalibros)
+                    //{
+                    //    autoresLibros.Add(libro.Autor);
+
+                    //}
+
+                    ////hacemos un bucle para recoger los editoriales de todos los libros
+                    //foreach (var libro in listalibros)
+                    //{
+                    //    editorialesLibros.Add(libro.Editorial);
+
+                    //}
+
+                    ////hacemos un bucle para recoger los colecciones de todos los libros
+                    //foreach (var libro in listalibros)
+                    //{
+                    //    coleccionesLibros.Add(libro.Coleccion);
+
+                    //}
+
+
+                    //pasamos todos los datos a la vista
+                    ViewData["Libros"] = listalibros;
+                    //ViewData["titulosLibros"] = titulosLibros;
+                    //ViewData["autoresLibros"] = autoresLibros;
+                    //ViewData["editorialesLibros"] = editorialesLibros;
+                    //ViewData["coleccionesLibros"] = coleccionesLibros;
+
 
                     //Creamos una nueva cookie y añadimos la Key idCliente con el valor que contiene la variable idCliente
                     Response.Cookies.Add(new HttpCookie("idCliente", idCliente));
@@ -86,17 +125,46 @@ namespace FrontalBiblioteca.Controllers
                     
                    
                 }
-
-                   
-                
+               
                     // Si los valores no coinciden, devolvemos "false"                 
                     //Response.Cookies.Add(new HttpCookie("Error", "Usuario o contraseña incorrectos"));
 
                     //return View("Validacion");
    
 
-
             }
+        }
+
+       
+
+        public ActionResult Detalle(int idlibro)
+        {
+            //Llamamos al metodo ObtenerLibroMedianteId de la clase Conector API
+            var DetalleDelLibro = ConectorAPI.ObtenerLibroMedianteId(idlibro, out string msgErrLibros);
+           
+            //pasamos mediante ViewData el Detalle del libro que recibimos a traves de su id
+            ViewData["DetalleDelLibro"] = DetalleDelLibro;
+
+            return View("DetailLibro");
+        }
+
+
+        public ActionResult Filtrado(string titulo, string autor, string editorial, string coleccion)
+        {
+            //Hacemos una instacia de una lista
+            List<Libro> listalibrosfiltrados = new List<Libro>();
+            Dictionary<string, string> filtros = new Dictionary<string, string>();
+
+            filtros.Add("Titulo", titulo);
+            filtros.Add("Autor", autor);
+            filtros.Add("Editorial", editorial);
+            filtros.Add("Coleccion", coleccion);
+
+
+
+            listalibrosfiltrados = ConectorAPI.ObtenerLibrosFiltrados(filtros, out string msgErrLibros);
+
+            return View("DetailLibro");
         }
 
         public ActionResult About()

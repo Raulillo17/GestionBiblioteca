@@ -225,8 +225,8 @@ namespace FrontalBiblioteca.Utilidades
             if (response.IsSuccessStatusCode)
             {
               
-                infoAcceso.Add("TieneAcceso", true);
-                infoAcceso.Add("FechaUltimaConexion", DateTime.Now);
+                //infoAcceso.Add("TieneAcceso", true);
+                //infoAcceso.Add("FechaUltimaConexion", DateTime.Now);
 
                 infoAcceso = response.Content.ReadAsAsync<Dictionary<string, object>>().Result;
                 if (infoAcceso == null)
@@ -265,15 +265,15 @@ namespace FrontalBiblioteca.Utilidades
             return usuarios;
         }
 
-        public static List<Libro> ObtenerLibros(Dictionary<string, string> requestform, out string msgErr)
+        public static List<Libro> ObtenerLibros(Dictionary<string, string> filtrolibros, out string msgErr)
         {
-            List<Libro> listalibros = new List<Libro> ();
+           
+            List<Libro> listalibros = new List<Libro>();
             msgErr = null;
             string uri = "api/LibrosController/ObtenerLibros";
-            HttpResponseMessage response = RespuestaPOST(uri, requestform);
+            HttpResponseMessage response = RespuestaPOST(uri, filtrolibros);
             if (response.IsSuccessStatusCode)
             {
-
                 listalibros = response.Content.ReadAsAsync<List<Libro>>().Result;
                 if (listalibros == null)
                 {
@@ -289,6 +289,54 @@ namespace FrontalBiblioteca.Utilidades
             return listalibros;
 
 
+        }
+
+        public static Libro ObtenerLibroMedianteId(int idlibro, out string msgErr)
+        {
+            Libro libro = new Libro();
+            msgErr = null;
+            string uri = "api/LibrosController/ObtenerLibroMedianteId";
+            HttpResponseMessage response = RespuestaPOST(uri, idlibro);
+            if (response.IsSuccessStatusCode)
+            {
+                libro = response.Content.ReadAsAsync<Libro>().Result;
+                if (libro == null)
+                {
+                    msgErr = "Diccionario vacío. Error en llamada a " + uri + " - Motivo: " + response.ReasonPhrase;
+                }
+
+
+            }
+            else
+            {
+                msgErr = "Error en llamada a " + uri + " - Motivo: " + response.ReasonPhrase;
+            }
+            return libro;
+        }
+
+        public static List<Libro> ObtenerLibrosFiltrados(Dictionary<string, string> filtros, out string msgErr)
+        {
+            List<Libro> listalibros = new List<Libro>();
+            msgErr = null;
+            string uri = "api/LibrosController/ObtenerLibrosFiltrados";
+            HttpResponseMessage response = RespuestaPOST(uri, filtros);
+            if (response.IsSuccessStatusCode)
+            {
+                listalibros = response.Content.ReadAsAsync<List<Libro>>().Result;
+                if (listalibros == null)
+                {
+                    msgErr = "Diccionario vacío. Error en llamada a " + uri + " - Motivo: " + response.ReasonPhrase;
+                }
+
+
+            }
+            else
+            {
+                msgErr = "Error en llamada a " + uri + " - Motivo: " + response.ReasonPhrase;
+            }
+            return listalibros;
+
+            throw new NotImplementedException();
         }
 
 

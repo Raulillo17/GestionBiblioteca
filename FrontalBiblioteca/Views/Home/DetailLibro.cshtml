@@ -1,0 +1,61 @@
+﻿@{
+    ViewBag.Title = "DetailLibro";
+    var DetalleDelLibro = ViewData["DetalleDelLibro"] as BibliotecaModelos.Libro;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Detalle Libro</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    <div class="container shadow">
+        <h1 class="text-center">Detalle del Libro</h1>
+        <div class="row ">
+            <div class="col-md-4">
+                <img src="img/840_560.jpg" alt="" class="img-fluid mt-4">
+            </div>
+            <div class="col-md-8">
+                <div class="mb-4">
+                    <p><strong>Titulo: </strong>@DetalleDelLibro.Titulo</p>
+                </div>
+                <div class="mb-4">
+                    <p><strong>ISBN: </strong>@DetalleDelLibro.ISBN</p>
+                </div>
+                <div class="mb-4">
+                    <p><strong>Autor: </strong>@DetalleDelLibro.Autor</p>
+                </div>
+                <div class="mb-4">
+                    <p><strong>Editorial: </strong>@DetalleDelLibro.Editorial</p>
+                </div>
+                <div class="mb-4">
+                    <p><strong>Coleccion: </strong>@DetalleDelLibro.Coleccion</p>
+                </div>
+                <div class="mb-4">
+                    <p><strong>Sinopsis: </strong>@DetalleDelLibro.Sinopsis</p>
+                </div>
+                <div class="mb-4">
+                    <p><strong>Fecha de Pirmera Edicion: </strong>@DetalleDelLibro.FechaPrimeraEdicion</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mb-4">
+            <button  class="btn btn-primary" onclick="window.history.back()">Volver</button>
+        </div>
+
+            
+        </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
+

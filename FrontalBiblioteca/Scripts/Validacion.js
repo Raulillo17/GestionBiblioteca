@@ -27,9 +27,6 @@ function checkLogin() {
 }
 
 
-
-
-
 function validarFormulario(e) {
     // Validar que el contenido del nombre está todo en minúsculas y que como mínimo son 8 caracteres
     var usuario = document.getElementById("user").value;

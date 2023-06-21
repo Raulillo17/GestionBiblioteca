@@ -81,41 +81,54 @@ namespace FrontalBiblioteca.Controllers
                     List<string> editorialesLibros = new List<string>();
                     List<string> coleccionesLibros = new List<string>();
 
-                    ////hacemos un bucle para recoger los titulos de todos los libros
-                    //foreach (var libro in listalibros)
-                    //{
-                    //    titulosLibros.Add(libro.Titulo);
+                    //hacemos un bucle para recoger los titulos de todos los libros
+                    foreach (var libro in listalibros)
+                    {
+                        if(libro.Titulo != null) {
+                        titulosLibros.Add(libro.Titulo);
+                        }
 
-                    //}
+                    }
 
-                    ////hacemos un bucle para recoger los AUTORES de todos los libros
-                    //foreach (var libro in listalibros)
-                    //{
-                    //    autoresLibros.Add(libro.Autor);
+                    //hacemos un bucle para recoger los AUTORES de todos los libros
+                    foreach (var libro in listalibros)
+                    {
+                        if(libro.Autor != null) {
+                            autoresLibros.Add(libro.Autor);
+                        }
+                       
 
-                    //}
+                    }
 
-                    ////hacemos un bucle para recoger los editoriales de todos los libros
-                    //foreach (var libro in listalibros)
-                    //{
-                    //    editorialesLibros.Add(libro.Editorial);
+                    //hacemos un bucle para recoger los editoriales de todos los libros
+                    foreach (var libro in listalibros)
+                    {
+                        if(libro.Editorial != null)
+                        {
+                            editorialesLibros.Add(libro.Editorial);
 
-                    //}
+                        }
+                        
 
-                    ////hacemos un bucle para recoger los colecciones de todos los libros
-                    //foreach (var libro in listalibros)
-                    //{
-                    //    coleccionesLibros.Add(libro.Coleccion);
+                    }
 
-                    //}
+                    //hacemos un bucle para recoger los colecciones de todos los libros
+                    foreach (var libro in listalibros)
+                    {
+                        if (libro.Autor != null) {
+                            coleccionesLibros.Add(libro.Coleccion);
+                        }
+                      
+
+                    }
 
 
                     //pasamos todos los datos a la vista
-                    ViewData["Libros"] = listalibros;
-                    //ViewData["titulosLibros"] = titulosLibros;
-                    //ViewData["autoresLibros"] = autoresLibros;
-                    //ViewData["editorialesLibros"] = editorialesLibros;
-                    //ViewData["coleccionesLibros"] = coleccionesLibros;
+                    Session["Libros"] = listalibros;
+                    ViewData["titulosLibros"] = titulosLibros;
+                    ViewData["autoresLibros"] = autoresLibros;
+                    ViewData["editorialesLibros"] = editorialesLibros;
+                    ViewData["coleccionesLibros"] = coleccionesLibros;
 
 
                     //Creamos una nueva cookie y añadimos la Key idCliente con el valor que contiene la variable idCliente
@@ -151,6 +164,8 @@ namespace FrontalBiblioteca.Controllers
 
         public ActionResult Filtrado(string titulo, string autor, string editorial, string coleccion)
         {
+
+
             //Hacemos una instacia de una lista
             List<Libro> listalibrosfiltrados = new List<Libro>();
             Dictionary<string, string> filtros = new Dictionary<string, string>();
@@ -161,10 +176,20 @@ namespace FrontalBiblioteca.Controllers
             filtros.Add("Coleccion", coleccion);
 
 
+            List<string> titulosLibros = new List<string>();
+            List<string> autoresLibros = new List<string>();
+            List<string> editorialesLibros = new List<string>();
+            List<string> coleccionesLibros = new List<string>();
+
+            //pasamos todos los datos a la vista
+            ViewData["titulosLibros"] = titulosLibros;
+            ViewData["autoresLibros"] = autoresLibros;
+            ViewData["editorialesLibros"] = editorialesLibros;
+            ViewData["coleccionesLibros"] = coleccionesLibros;
 
             listalibrosfiltrados = ConectorAPI.ObtenerLibrosFiltrados(filtros, out string msgErrLibros);
-
-            return View("DetailLibro");
+            ViewData["Librosfiltrados"] = listalibrosfiltrados;
+            return View("ListadoLibros");
         }
 
         public ActionResult About()

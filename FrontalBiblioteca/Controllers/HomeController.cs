@@ -172,7 +172,7 @@ namespace FrontalBiblioteca.Controllers
 
 
 
-            if(titulo == null)
+            if(titulo == "")
             {
                 titulo = "%";
                 filtros.Add("Titulo", titulo);
@@ -182,7 +182,7 @@ namespace FrontalBiblioteca.Controllers
                 filtros.Add("Titulo", titulo);
                
             }
-            if(autor == null) {
+            if(autor == "") {
                 autor = "%";
                 filtros.Add("Autor", autor);
             }
@@ -190,7 +190,7 @@ namespace FrontalBiblioteca.Controllers
             {
                 filtros.Add("Autor", autor);
             }
-            if(editorial == null) 
+            if(editorial == "") 
             { 
                 editorial = "%";
                 filtros.Add("Editorial", editorial);
@@ -199,7 +199,7 @@ namespace FrontalBiblioteca.Controllers
             {
                 filtros.Add("Editorial", editorial);
             }
-            if(coleccion == null)
+            if(coleccion == "")
             {
                 coleccion = "%";
                 filtros.Add("Coleccion", coleccion);

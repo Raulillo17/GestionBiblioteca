@@ -170,10 +170,47 @@ namespace FrontalBiblioteca.Controllers
             List<Libro> listalibrosfiltrados = new List<Libro>();
             Dictionary<string, string> filtros = new Dictionary<string, string>();
 
-            filtros.Add("Titulo", titulo);
-            filtros.Add("Autor", autor);
-            filtros.Add("Editorial", editorial);
-            filtros.Add("Coleccion", coleccion);
+
+
+            if(titulo == null)
+            {
+                titulo = "%";
+                filtros.Add("Titulo", titulo);
+            }
+            else
+            {
+                filtros.Add("Titulo", titulo);
+               
+            }
+            if(autor == null) {
+                autor = "%";
+                filtros.Add("Autor", autor);
+            }
+            else
+            {
+                filtros.Add("Autor", autor);
+            }
+            if(editorial == null) 
+            { 
+                editorial = "%";
+                filtros.Add("Editorial", editorial);
+            }
+            else
+            {
+                filtros.Add("Editorial", editorial);
+            }
+            if(coleccion == null)
+            {
+                coleccion = "%";
+                filtros.Add("Coleccion", coleccion);
+            }
+            else
+            {
+                filtros.Add("Coleccion", coleccion);
+            }
+           
+           
+            
 
 
             List<string> titulosLibros = new List<string>();

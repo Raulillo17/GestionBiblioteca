@@ -4,8 +4,8 @@
 
     var listadolibros = ViewData["Libros"] as List<BibliotecaModelos.Libro>; // Obtener la lista de libros desde la ViewData
     var libros = Session["Libros"] as List<BibliotecaModelos.Libro>; // Obtener la lista de libros desde la Session
-    //var listadolibros = ViewData["Libros"] as List<BibliotecaModelos.Libro>;
-    //var libros = Session["Libros"] as List<BibliotecaModelos.Libro>;
+                                                                     //var listadolibros = ViewData["Libros"] as List<BibliotecaModelos.Libro>;
+                                                                     //var libros = Session["Libros"] as List<BibliotecaModelos.Libro>;
     var librosfiltrados = ViewData["Librosfiltrados"] as List<BibliotecaModelos.Libro>;
     var titulosLibros = (Session["Libros"] as List<BibliotecaModelos.Libro>)?.Select(libro => libro.Titulo).ToList();
     var autoresLibros = (Session["Libros"] as List<BibliotecaModelos.Libro>)?.Select(libro => libro.Autor).ToList();
@@ -40,54 +40,24 @@
             <div class="col-md-12 d-flex justify-content-center  w-100">
                 <div class="row">
                     <div class="col-md-10">
-                            <form action="~/Home/Filtrado" class="row g-3 mt-5" method="post" id="filtrar"
-                                  onsubmit="Filtrado(window.event)">
-                                <div class="form-group">
-                                    <select class="form-control" name="titulo" id="titulo">
-                                        <option disabled selected>Elija titulo</option>
-                                        @foreach (var titulo in titulosLibros)
-                                        {
-                                            <option value="@titulo">@titulo</option>
-                                        }
-                                    </select>
-                                </div>
+                        <form action="~/Home/Filtrado" class="row g-3 mt-5" method="post" id="filtrar"
+                              onsubmit="Filtrado(window.event)">
+                            <div class="form-group m-2">
+                                <input type="text" class="form-control" name="Titulo" placeholder="Ingrese título">
+                            </div>
+                            <div class="form-group m-2">
+                                <input type="text" class="form-control" name="Autor" placeholder="Ingrese autor">
+                            </div>
+                            <div class="form-group m-2">
+                                <input type="text" class="form-control" name="Editorial" placeholder="Ingrese editorial">
+                            </div>
+                            <div class="form-group m-2">
+                                <input type="text" class="form-control" name="Coleccion" placeholder="Ingrese colección">
+                            </div>
+                            <button id="btnFiltrar" class="btn btn-primary m-2" type="submit">Filtrar</button>
+                            <button id="btnLimpiar" class="btn btn-secondary m-2" type="reset">Limpiar</button>
+                        </form>
 
-                                <div class="form-group">
-                                    <select class="form-control" name="autor" id="autor">
-                                        <option disabled selected>Elija Autor</option>
-                                        @foreach (var autor in autoresLibros)
-                                        {
-                                            <option value="@autor">@autor</option>
-                                        }
-
-                                    </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <select class="form-control" name="editorial" id="editorial">
-                                        <option disabled selected>Elija Editorial</option>
-                                        @foreach (var editorial in editorialesLibros)
-                                        {
-                                            <option value="@editorial">@editorial</option>
-                                        }
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <select class="form-control" name="coleccion" id="coleccion">
-                                        <option disabled selected>Elija Coleccion</option>
-                                        @foreach (var coleccion in coleccionesLibros)
-                                        {
-                                            <option value="@coleccion">@coleccion</option>
-                                        }
-
-
-
-                                    </select>
-                                </div>
-                                <button id="btnFiltrar" class="btn btn-primary m-2" type="submit">Filtrar</button>
-                                <button id="btnLimpiar" class="btn btn-secondary m-2" type="reset">Limpiar</button>
-                            </form>
-                        
 
 
                     </div>

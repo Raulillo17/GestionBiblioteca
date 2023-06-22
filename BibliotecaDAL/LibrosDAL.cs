@@ -107,7 +107,7 @@ namespace BibliotecaDAL
                 {
                     Connection = con,
                     //Metemos la query para sacar la informacion que queramos
-                    CommandText = "SELECT * FROM Libros WHERE Titulo = @titulo OR Autor = @autor OR Editorial = @editorial OR Coleccion = @coleccion"
+                    CommandText = "SELECT * FROM Libros WHERE Titulo LIKE @titulo OR Autor LIKE @autor OR Editorial LIKE @editorial OR Coleccion LIKE @coleccion"
             };
 
                 command.Parameters.AddWithValue("@titulo", titulo);

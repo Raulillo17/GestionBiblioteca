@@ -172,42 +172,42 @@ namespace FrontalBiblioteca.Controllers
 
 
 
-            if(titulo == "")
-            {
-                titulo = "%";
-                filtros.Add("Titulo", titulo);
-            }
-            else
-            {
+            //if(titulo == "")
+            //{
+            //    titulo = "%";
+            //    filtros.Add("Titulo", titulo);
+            //}
+            //else
+            //{
                 filtros.Add("Titulo", titulo);
                
-            }
-            if(autor == "") {
-                autor = "%";
+            //}
+            //if(autor == "") {
+            //    autor = "%";
+            //    filtros.Add("Autor", autor);
+            //}
+            //else
+            //{
                 filtros.Add("Autor", autor);
-            }
-            else
-            {
-                filtros.Add("Autor", autor);
-            }
-            if(editorial == "") 
-            { 
-                editorial = "%";
+            //}
+            //if(editorial == "") 
+            //{ 
+            //    editorial = "%";
+            //    filtros.Add("Editorial", editorial);
+            //}
+            //else
+            //{
                 filtros.Add("Editorial", editorial);
-            }
-            else
-            {
-                filtros.Add("Editorial", editorial);
-            }
-            if(coleccion == "")
-            {
-                coleccion = "%";
+            //}
+            //if(coleccion == null)
+            //{
+            //    coleccion = "%";
+            //    filtros.Add("Coleccion", coleccion);
+            //}
+            //else
+            //{
                 filtros.Add("Coleccion", coleccion);
-            }
-            else
-            {
-                filtros.Add("Coleccion", coleccion);
-            }
+            //}
            
            
             
